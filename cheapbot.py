@@ -1,3 +1,5 @@
+import sys
+
 import aiohttp
 import discord
 import skinport
@@ -5,8 +7,11 @@ from discord.ext import commands
 
 import config
 
-skinport_client = skinport.Client()
+if config.discord_webhook_url == '':
+    print("You have to set a Discord Webhook URL in the config.py file", file=sys.stderr)
+    sys.exit(1)
 
+skinport_client = skinport.Client()
 
 @skinport_client.listen("saleFeed")
 async def on_sale_feed(data):
@@ -25,5 +30,5 @@ async def on_sale_feed(data):
             await webhook.send(page)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":      
     skinport_client.run()
