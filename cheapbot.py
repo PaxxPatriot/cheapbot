@@ -13,6 +13,7 @@ if config.discord_webhook_url == '':
 
 skinport_client = skinport.Client()
 
+
 @skinport_client.listen("saleFeed")
 async def on_sale_feed(data):
     paginator = commands.Paginator(prefix="", suffix="")
@@ -30,5 +31,6 @@ async def on_sale_feed(data):
             await webhook.send(page)
 
 
-if __name__ == "__main__":      
+if __name__ == "__main__":
+    print("Running...")
     skinport_client.run()
