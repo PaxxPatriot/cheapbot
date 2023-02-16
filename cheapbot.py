@@ -20,7 +20,7 @@ async def on_sale_feed(data):
     salefeed = skinport.SaleFeed(data=data)
     sales = salefeed.sales
     for s in sales:
-        if "\u2605" not in s.tags:
+        if s.stattrak or "\u2605" not in s.tags:
             return
         sales = await skinport_client.get_sales_history(s.market_hash_name)
         if sales[0].last_7_days.min is not None and sales[0].last_7_days.min > s.sale_price:
