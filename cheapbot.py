@@ -21,6 +21,11 @@ async def get_item_from_sales_history(market_hash_name: str) -> skinport.ItemWit
 async def on_sale_feed(data):
     paginator = commands.Paginator(prefix="", suffix="")
     salefeed = skinport.SaleFeed(data=data)
+
+    # Ignore "sold" events    
+    if salefeed.event_type == "sold":
+        return
+    
     sales = salefeed.sales
     for s in sales:
         if s.suggested_price < 5: # Ignore items which are suggested for less than 5 EUR
