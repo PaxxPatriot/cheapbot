@@ -1,1 +1,1 @@
-discord_webhook_url=''
+discord_webhook_url = ""
