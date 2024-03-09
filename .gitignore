@@ -130,3 +130,9 @@ dmypy.json
 
 # Config files
 config.py
+
+# CSV files
+*.csv
+
+# VS Code config directory
+.vscode/
